@@ -17,9 +17,9 @@ contract SimpleStorage {
     }
 
     // Function
-    function store(uint256 _favoriteNumber) public {
+    function store(uint256 _favoriteNumber) public virtual {
         favoriteNumber = _favoriteNumber;
-        retrieve(); // 消耗gas
+        //retrieve(); // 消耗gas
     }
 
     // view 只读, pure 只读、并且不能读取区块链数据，不需要消耗gas，在其他函数内调用除外
