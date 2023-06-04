@@ -8,24 +8,56 @@ import "./PriceConverter.sol";
 // 3. 设定最低资金价值（美元）
 
 contract FundMe {
-
     // 使用library
     using PriceConverter for uint256;
 
     uint256 public minimunUsd = 50 * 1e18;
 
     address[] public funders;
-
     mapping(address => uint256) public addressToAmountFunded;
+
+    address public owner;
+
+    constructor() {
+        owner = msg.sender;
+    }
 
     // 发送ETH到合约, payable 修饰支付函数
     function fund() public payable {
         // 部署时发送的ETH至少50美元, 1ETH=1e18Wei
         //require(getConversionRate(msg.value) >= minimunUsd, "Didn't send enough!");
-        require(msg.value.getConversionRate() >= minimunUsd, "Didn't send enough!");
+        require(
+            msg.value.getConversionRate() >= minimunUsd,
+            "Didn't send enough!"
+        );
         funders.push(msg.sender);
-        addressToAmountFunded[msg.sender] = msg.value;
+        addressToAmountFunded[msg.sender] += msg.value;
     }
 
-    // function withdraw() {}
+    // 提取
+    function withdraw() public onlyOwner {
+
+        for (uint256 funderIndex = 0; funderIndex < funders.length; funderIndex++) {
+            address funder = funders[funderIndex];
+            addressToAmountFunded[funder] = 0;
+        }
+
+        funders = new address[](0);
+
+        // 发送资产三种方式:
+        // 1. transfer(2300 gas, throws error), msg.sender = address, payable(msg.sender) = payable address
+        //payable(msg.sender).transfer(address(this).balance);
+        // 2. send(2300 gas, returns bool)
+        //bool sendSuccess = payable(msg.sender).send(address(this).balance);
+        // 3. call(forward all gas or set gas, returns bool)，推荐使用
+        (bool callSuccess,) = payable(msg.sender).call{value: address(this).balance}("");
+        require(callSuccess, "Call failed!");
+    }
+
+    // modifier 修饰器
+    modifier onlyOwner {
+        require(msg.sender == owner, "Sender is not owner!"); // 前置处理
+        _; // 相当于执行原始函数
+        // 后置处理
+    }
 }

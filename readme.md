@@ -1,0 +1,7 @@
+- [Web3, Full Stack Solidity, Smart Contract & Blockchain - Beginner to Expert ULTIMATE Course](https://github.com/smartcontractkit/full-blockchain-solidity-course-js)
+- [solidity docs](https://docs.soliditylang.org/), [solidity docs cn](https://learnblockchain.cn/docs/solidity/index.html)
+- [solidity example](https://solidity-by-example.org/)
+- [remix ide](https://remix.ethereum.org/)
+- [chain link](https://chain.link/)
+- [metamask](https://metamask.io/)
+- [Ethereum Unit Converter](https://eth-converter.com/)
