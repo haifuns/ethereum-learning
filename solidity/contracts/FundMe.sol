@@ -70,4 +70,14 @@ contract FundMe {
         _; // 相当于执行原始函数
         // 后置处理
     }
+
+    // 解决如果发送ETH, 但是不通过fund
+    // receive ether function: receive(), fallback()
+    receive() external payable {
+        fund();
+    }
+
+    fallback() external payable {
+        fund();
+    }
 }
