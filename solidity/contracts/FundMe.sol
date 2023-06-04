@@ -7,6 +7,9 @@ import "./PriceConverter.sol";
 // 2. 提取资金
 // 3. 设定最低资金价值（美元）
 
+// custom error
+error NotOwner();
+
 contract FundMe {
     // 使用library
     using PriceConverter for uint256;
@@ -58,7 +61,12 @@ contract FundMe {
 
     // modifier 修饰器
     modifier onlyOwner {
-        require(msg.sender == i_owner, "Sender is not owner!"); // 前置处理
+        // 需要存储和发送长字符串，更耗费gas
+        //require(msg.sender == i_owner, "Sender is not owner!"); // 前置处理
+        // 使用custom error更节约gas
+        if (msg.sender != i_owner) {
+            revert NotOwner();
+        }
         _; // 相当于执行原始函数
         // 后置处理
     }
