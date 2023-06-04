@@ -11,15 +11,17 @@ contract FundMe {
     // 使用library
     using PriceConverter for uint256;
 
-    uint256 public minimunUsd = 50 * 1e18;
+    // 定义成constant, immutable 更节约 gas 
+    uint256 public constant MINIMUM_USD = 50 * 1e18; // 1 * 10 ** 18
 
     address[] public funders;
     mapping(address => uint256) public addressToAmountFunded;
 
-    address public owner;
+    // 不可变的 immutable
+    address public immutable i_owner;
 
     constructor() {
-        owner = msg.sender;
+        i_owner = msg.sender;
     }
 
     // 发送ETH到合约, payable 修饰支付函数
@@ -27,7 +29,7 @@ contract FundMe {
         // 部署时发送的ETH至少50美元, 1ETH=1e18Wei
         //require(getConversionRate(msg.value) >= minimunUsd, "Didn't send enough!");
         require(
-            msg.value.getConversionRate() >= minimunUsd,
+            msg.value.getConversionRate() >= MINIMUM_USD,
             "Didn't send enough!"
         );
         funders.push(msg.sender);
@@ -56,7 +58,7 @@ contract FundMe {
 
     // modifier 修饰器
     modifier onlyOwner {
-        require(msg.sender == owner, "Sender is not owner!"); // 前置处理
+        require(msg.sender == i_owner, "Sender is not owner!"); // 前置处理
         _; // 相当于执行原始函数
         // 后置处理
     }
