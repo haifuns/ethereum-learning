@@ -3,6 +3,7 @@
 - [ganache 本地虚拟区块链](https://trufflesuite.com/ganache/)
 - [ethers.js 区块链工具包](https://ethers.org/)
 - [web3.js 区块链工具包](https://docs.web3js.org/)
+- [ethervm Solidity反编译](https://ethervm.io/decompile)
 
 ```
 npm i -g corepack
