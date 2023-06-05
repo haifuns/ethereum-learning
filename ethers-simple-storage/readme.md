@@ -29,3 +29,12 @@ node deploy.js
 ```
 yarn add dotenv
 ```
+
+私钥管理：
+```
+// 删除.env中的PRIVATE_*环境变量
+// 生成密钥
+node encryptkey.js PRIVATE_KEY=0x000 PRIVATE_KEY_PASSWORD=password
+// 使用密钥登录钱包，连接钱包方式从PRIVATE_KEY改为密钥+PRIVATE_KEY_PASSWORD
+node deploy.js PRIVATE_KEY_PASSWORD=password
+```
