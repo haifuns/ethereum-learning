@@ -1,11 +1,13 @@
 const ethers = require("ethers");
 const fs = require("fs-extra");
+require("dotenv").config();
 
 async function main() {
+    console.log(process.env.RPC_URL);
     // 连接本地区块链
-    const provider = new ethers.JsonRpcProvider("http://127.0.0.1:7545");
+    const provider = new ethers.JsonRpcProvider(process.env.RPC_URL);
     // 钱包
-    const wallet = new ethers.Wallet("e8df6ea341ec88980d2e2203978c685cdee61b2e40f408d05fb84e3aec5f206d", provider);
+    const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
     const abi = fs.readFileSync("./SimpleStorage_sol_SimpleStorage.abi", "utf-8");
     const binary = fs.readFileSync("./SimpleStorage_sol_SimpleStorage.bin", "utf-8");
     const contractFactory = new ethers.ContractFactory(abi, binary, wallet);

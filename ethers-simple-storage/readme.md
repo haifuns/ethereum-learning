@@ -5,6 +5,8 @@
 - [web3.js 区块链工具包](https://docs.web3js.org/)
 - [ethervm Solidity反编译](https://ethervm.io/decompile)
 
+
+本地环境搭建：
 ```
 npm i -g corepack
 corepack enable // enable yarn
@@ -19,4 +21,11 @@ yarn add solc
 yarn add ethers
 
 yarn add fs-extra // 文件操作工具包
+
+node deploy.js
 ``` 
+
+环境变量：
+```
+yarn add dotenv
+```
