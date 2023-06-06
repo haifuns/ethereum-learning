@@ -5,3 +5,6 @@
 **/*.log
 .env
 .encryptedKey.json
+**/artifacts
+**/cache
+**/target/
