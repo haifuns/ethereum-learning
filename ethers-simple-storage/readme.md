@@ -4,6 +4,8 @@
 - [ethers.js 区块链工具包](https://ethers.org/)
 - [web3.js 区块链工具包](https://docs.web3js.org/)
 - [ethervm Solidity反编译](https://ethervm.io/decompile)
+- [alchemy 连接测试网/主网](https://www.alchemy.com/)
+- [etherscan 区块链浏览器，连接到sepolia测试网](https://sepolia.etherscan.io/)
 
 
 本地环境搭建：

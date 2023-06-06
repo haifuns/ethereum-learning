@@ -6,14 +6,15 @@ async function main() {
     // 连接本地区块链
     const provider = new ethers.JsonRpcProvider(process.env.RPC_URL)
     // 钱包
-    //const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
+    const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider)
 
-    const encryptedJson = fs.readFileSync("./.encryptedKey.json", "utf-8")
-    let wallet = ethers.Wallet.fromEncryptedJsonSync(
-        encryptedJson,
-        process.env.PRIVATE_KEY_PASSWORD
-    )
-    wallet = await wallet.connect(provider)
+    // 更安全的方式，使用秘钥连接钱包
+    //const encryptedJson = fs.readFileSync("./.encryptedKey.json", "utf-8")
+    // let wallet = ethers.Wallet.fromEncryptedJsonSync(
+    //     encryptedJson,
+    //     process.env.PRIVATE_KEY_PASSWORD
+    // )
+    // wallet = await wallet.connect(provider)
 
     const abi = fs.readFileSync(
         "./SimpleStorage_sol_SimpleStorage.abi",
@@ -31,6 +32,9 @@ async function main() {
     // 交易回执
     const deploymentReceipt = await contract.deploymentTransaction().wait(1)
     //console.log(deploymentReceipt);
+
+    const address = await contract.getAddress()
+    console.log(`Contract Address: ${address}`)
 
     // ethers.js 发送raw交易
     // const nonce = await wallet.getNonce();
