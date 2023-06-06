@@ -1,26 +1,35 @@
-const ethers = require("ethers");
-const fs = require("fs-extra");
-require("dotenv").config();
+const ethers = require("ethers")
+const fs = require("fs-extra")
+require("dotenv").config()
 
 async function main() {
     // 连接本地区块链
-    const provider = new ethers.JsonRpcProvider(process.env.RPC_URL);
+    const provider = new ethers.JsonRpcProvider(process.env.RPC_URL)
     // 钱包
     //const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
 
-    const encryptedJson = fs.readFileSync("./.encryptedKey.json", "utf-8");
-    let wallet = ethers.Wallet.fromEncryptedJsonSync(encryptedJson, process.env.PRIVATE_KEY_PASSWORD);
-    wallet = await wallet.connect(provider);
+    const encryptedJson = fs.readFileSync("./.encryptedKey.json", "utf-8")
+    let wallet = ethers.Wallet.fromEncryptedJsonSync(
+        encryptedJson,
+        process.env.PRIVATE_KEY_PASSWORD
+    )
+    wallet = await wallet.connect(provider)
 
-    const abi = fs.readFileSync("./SimpleStorage_sol_SimpleStorage.abi", "utf-8");
-    const binary = fs.readFileSync("./SimpleStorage_sol_SimpleStorage.bin", "utf-8");
-    const contractFactory = new ethers.ContractFactory(abi, binary, wallet);
-    console.log("Deploying, please wait...");
+    const abi = fs.readFileSync(
+        "./SimpleStorage_sol_SimpleStorage.abi",
+        "utf-8"
+    )
+    const binary = fs.readFileSync(
+        "./SimpleStorage_sol_SimpleStorage.bin",
+        "utf-8"
+    )
+    const contractFactory = new ethers.ContractFactory(abi, binary, wallet)
+    console.log("Deploying, please wait...")
     // ethers.js 部署合约
-    const contract = await contractFactory.deploy();
+    const contract = await contractFactory.deploy()
     //console.log(contract);
     // 交易回执
-    const deploymentReceipt = await contract.deploymentTransaction().wait(1);
+    const deploymentReceipt = await contract.deploymentTransaction().wait(1)
     //console.log(deploymentReceipt);
 
     // ethers.js 发送raw交易
@@ -39,17 +48,17 @@ async function main() {
     // console.log(sentTxResponse);
 
     // ethers.js 合约交互
-    const currentFavoriteNumber = await contract.retrieve();
-    console.log(`Current Favorite Number: ${currentFavoriteNumber.toString()}`);
-    const transactonResponse = await contract.store("6");
-    const transactonReceipt = await transactonResponse.wait(1);
-    const updateFavoriteNumber = await contract.retrieve();
-    console.log(`Update Favorite Number: ${updateFavoriteNumber}`);
+    const currentFavoriteNumber = await contract.retrieve()
+    console.log(`Current Favorite Number: ${currentFavoriteNumber.toString()}`)
+    const transactonResponse = await contract.store("6")
+    const transactonReceipt = await transactonResponse.wait(1)
+    const updateFavoriteNumber = await contract.retrieve()
+    console.log(`Update Favorite Number: ${updateFavoriteNumber}`)
 }
 
 main()
     .then(() => process.exit(0))
     .catch((error) => {
-        console.error(error);
-        process.exit(1);
+        console.error(error)
+        process.exit(1)
     })

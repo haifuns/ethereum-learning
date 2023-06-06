@@ -38,3 +38,8 @@ node encryptkey.js PRIVATE_KEY=0x000 PRIVATE_KEY_PASSWORD=password
 // 使用密钥登录钱包，连接钱包方式从PRIVATE_KEY改为密钥+PRIVATE_KEY_PASSWORD
 node deploy.js PRIVATE_KEY_PASSWORD=password
 ```
+
+代码格式（VSCode Plugin：Prettier - Code formatter）：
+```
+yarn add prettier prettier-plugin-solidity // https://github.com/prettier-solidity/prettier-plugin-solidity
+```
