@@ -15,15 +15,24 @@ async function main() {
     await simpleStorage.deployed()
     console.log(`Deployed to ${simpleStorage.address}`)
 
-    console.log(network.config)
+    //console.log(network.config)
     // 4 == "4" true
     // 4 === "4" false, === 不进行强转
     // chainId 31337 是本地hardhat网络
     // process.env.ETHERSCAN_API_KEY 存在 true, 不存在 false
     if (network.config.chainId !== 31337 && process.env.ETHERSCAN_API_KEY) {
+        console.log("Waiting for block txes..")
         await simpleStorage.deployTransaction.wait(6) // 等待6个区块
         await verify(simpleStorage.address, [])
     }
+
+    const currentValue = await simpleStorage.retrieve()
+    console.log(`Current Value is ${currentValue}`)
+
+    const transactionResponse = await simpleStorage.store(6)
+    await transactionResponse.wait(1)
+    const updateValue = await simpleStorage.retrieve()
+    console.log(`Update Value is ${updateValue}`)
 }
 
 // 验证合约
