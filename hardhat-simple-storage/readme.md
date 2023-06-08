@@ -6,6 +6,8 @@
 - [ethervm Solidity反编译](https://ethervm.io/decompile)
 - [alchemy 连接测试网/主网](https://www.alchemy.com/)
 - [etherscan 区块链浏览器，连接到sepolia测试网](https://sepolia.etherscan.io/)
+- [rekt.news 黑客攻击事件](https://rekt.news/leaderboard/)
+- [mochajs JavaScript测试框架](https://mochajs.org/)
 
 
 hardhat框架环境搭建：
@@ -29,4 +31,6 @@ yarn hardhat node // 启动hardhat本地节点 http://127.0.0.1:8545/
 yarn hardhat run scripts/deploy.js  --network localhost // 从本地环境启动
 
 yarn hardhat console --network localhost // hardhat 控制台
+
+yarn hardhat test // 运行测试
 ```
