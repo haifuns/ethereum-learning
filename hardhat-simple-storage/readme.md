@@ -8,6 +8,7 @@
 - [etherscan 区块链浏览器，连接到sepolia测试网](https://sepolia.etherscan.io/)
 - [rekt.news 黑客攻击事件](https://rekt.news/leaderboard/)
 - [mochajs JavaScript测试框架](https://mochajs.org/)
+- [coinmarketcap 加密货币价格](https://coinmarketcap.com/)
 
 
 hardhat框架环境搭建：
@@ -33,4 +34,9 @@ yarn hardhat run scripts/deploy.js  --network localhost // 从本地环境启动
 yarn hardhat console --network localhost // hardhat 控制台
 
 yarn hardhat test // 运行测试
+
+yarn add hardhat-gas-reporter --dev // 安装hardhat sgas 报告插件
+
+yarn add --dev solidity-coverage // 测试覆盖率插件
+yarn hardhat coverage
 ```

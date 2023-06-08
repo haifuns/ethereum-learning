@@ -8,3 +8,6 @@
 **/artifacts
 **/cache
 **/target/
+**/gas-report.txt
+**/coverage.json
+**/coverage
