@@ -10,6 +10,6 @@ yarn solhint contracts/*.sol
 yarn add --dev @chainlink/contracts
 
 yarn add --dev hardhat-deploy
-yarn add --dev @nomiclabs/hardhat-etherscan@npm:hardhat-deploy-ethers ethers
+yarn add --dev @nomiclabs/hardhat-ethers@npm:hardhat-deploy-ethers ethers
 yarn hardhat deploy
 ```
