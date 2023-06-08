@@ -24,4 +24,9 @@ yarn hardhat run scripts/deploy.js  --network spolia // 切换测试网络到 al
 yarn add --dev @nomiclabs/hardhat-etherscan // 验证合约
 
 yarn hardhat block-number --network spolia // 测试自定义hardhat task
+
+yarn hardhat node // 启动hardhat本地节点 http://127.0.0.1:8545/
+yarn hardhat run scripts/deploy.js  --network localhost // 从本地环境启动
+
+yarn hardhat console --network localhost // hardhat 控制台
 ```
