@@ -22,4 +22,6 @@ yarn add --dev dotenv // .env
 yarn hardhat run scripts/deploy.js  --network spolia // 切换测试网络到 alchemy & spolia
 
 yarn add --dev @nomiclabs/hardhat-etherscan // 验证合约
+
+yarn hardhat block-number --network spolia // 测试自定义hardhat task
 ```
