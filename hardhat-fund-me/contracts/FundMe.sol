@@ -8,29 +8,58 @@ import "./PriceConverter.sol";
 // 3. 设定最低资金价值（美元）
 
 // custom error
-error NotOwner();
+error FundMe_NotOwner();
 
+/**
+ * @title 众筹合约
+ * @author haifun
+ * @notice 这是一个众筹合约示例
+ * @dev 使用了 price feed 库
+ */
 contract FundMe {
     // 使用library
     using PriceConverter for uint256;
 
     // 定义成constant, immutable 更节约 gas 
     uint256 public constant MINIMUM_USD = 50 * 1e18; // 1 * 10 ** 18
-
     address[] public funders;
     mapping(address => uint256) public addressToAmountFunded;
-
     // 不可变的 immutable
     address public immutable i_owner;
 
     AggregatorV3Interface public priceFeed;
+
+    // modifier 修饰器
+    modifier onlyOwner {
+        // 需要存储和发送长字符串，更耗费gas
+        //require(msg.sender == i_owner, "Sender is not owner!"); // 前置处理
+        // 使用custom error更节约gas
+        if (msg.sender != i_owner) {
+            revert FundMe_NotOwner();
+        }
+        _; // 相当于执行原始函数
+        // 后置处理
+    }
 
     constructor(address priceFeedAddress) {
         i_owner = msg.sender;
         priceFeed = AggregatorV3Interface(priceFeedAddress);
     }
 
-    // 发送ETH到合约, payable 修饰支付函数
+    // 解决如果发送ETH, 但是不通过fund
+    // receive ether function: receive(), fallback()
+    receive() external payable {
+        fund();
+    }
+
+    fallback() external payable {
+        fund();
+    }
+    
+    /**
+     * @notice 吸纳资金
+     * @dev 使用了 price feed 库
+     */
     function fund() public payable {
         // 部署时发送的ETH至少50美元, 1ETH=1e18Wei
         //require(getConversionRate(msg.value) >= minimunUsd, "Didn't send enough!");
@@ -60,27 +89,5 @@ contract FundMe {
         // 3. call(forward all gas or set gas, returns bool)，推荐使用
         (bool callSuccess,) = payable(msg.sender).call{value: address(this).balance}("");
         require(callSuccess, "Call failed!");
-    }
-
-    // modifier 修饰器
-    modifier onlyOwner {
-        // 需要存储和发送长字符串，更耗费gas
-        //require(msg.sender == i_owner, "Sender is not owner!"); // 前置处理
-        // 使用custom error更节约gas
-        if (msg.sender != i_owner) {
-            revert NotOwner();
-        }
-        _; // 相当于执行原始函数
-        // 后置处理
-    }
-
-    // 解决如果发送ETH, 但是不通过fund
-    // receive ether function: receive(), fallback()
-    receive() external payable {
-        fund();
-    }
-
-    fallback() external payable {
-        fund();
     }
 }

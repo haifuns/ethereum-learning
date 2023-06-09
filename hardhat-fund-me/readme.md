@@ -17,4 +17,5 @@ yarn hardhat deploy --tags mocks // mock contract
 
 yarn hardhat node // 启动一个本地环境, 窗口保持
 yarn hardhat deploy // mock + deploy
+yarn hardhat run scripts/deploy.js  --network spolia // 测试环境 + verify
 ```
