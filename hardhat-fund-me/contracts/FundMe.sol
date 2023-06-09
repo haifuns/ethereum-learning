@@ -23,8 +23,11 @@ contract FundMe {
     // 不可变的 immutable
     address public immutable i_owner;
 
-    constructor() {
+    AggregatorV3Interface public priceFeed;
+
+    constructor(address priceFeedAddress) {
         i_owner = msg.sender;
+        priceFeed = AggregatorV3Interface(priceFeedAddress);
     }
 
     // 发送ETH到合约, payable 修饰支付函数
@@ -32,7 +35,7 @@ contract FundMe {
         // 部署时发送的ETH至少50美元, 1ETH=1e18Wei
         //require(getConversionRate(msg.value) >= minimunUsd, "Didn't send enough!");
         require(
-            msg.value.getConversionRate() >= MINIMUM_USD,
+            msg.value.getConversionRate(priceFeed) >= MINIMUM_USD,
             "Didn't send enough!"
         );
         funders.push(msg.sender);
