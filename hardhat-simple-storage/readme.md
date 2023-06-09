@@ -35,7 +35,7 @@ yarn hardhat console --network localhost // hardhat 控制台
 
 yarn hardhat test // 运行测试
 
-yarn add hardhat-gas-reporter --dev // 安装hardhat sgas 报告插件
+yarn add hardhat-gas-reporter --dev // 安装hardhat gas 报告插件
 
 yarn add --dev solidity-coverage // 测试覆盖率插件
 yarn hardhat coverage
