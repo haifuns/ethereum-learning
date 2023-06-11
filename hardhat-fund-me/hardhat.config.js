@@ -4,6 +4,7 @@ require("@nomiclabs/hardhat-etherscan")
 require("dotenv").config()
 require("solidity-coverage")
 require("hardhat-deploy")
+require("@nomicfoundation/hardhat-toolbox")
 
 const SEPOLIA_RPC_URL = process.env.SEPOLIA_RPC_URL || "https://eth-sepolia"
 const PRIVATE_KEY = process.env.PRIVATE_KEY || "0xkey"
