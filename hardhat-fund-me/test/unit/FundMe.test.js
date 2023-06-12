@@ -11,8 +11,8 @@ describe("FundMe", async function () {
         deployer = (await getNamedAccounts()).deployer
         // 在本地网络运行部署脚本并部署合约
         await deployments.fixture(["all"])
-        fundMe = await ethers.getContractAt("FundMe", deployer)
-        mockV3Aggregator = await ethers.getContractAt(
+        fundMe = await ethers.getContract("FundMe", deployer)
+        mockV3Aggregator = await ethers.getContract(
             "MockV3Aggregator",
             deployer
         )
@@ -20,7 +20,7 @@ describe("FundMe", async function () {
 
     describe("constructor", async function () {
         it("sets the aggregator addresses correctly", async function () {
-            const response = fundMe.priceFeed()
+            const response = await fundMe.priceFeed()
             assert.equal(response, mockV3Aggregator.address)
         })
     })
