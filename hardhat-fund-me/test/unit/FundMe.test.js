@@ -72,5 +72,55 @@ describe("FundMe", async function () {
                 endingDeployerBalance.add(gasCost).toString()
             )
         })
+
+        it("allows us to withdraw with multiple funders", async function () {
+            const accounts = await ethers.getSigners()
+            for (let index = 0; index < 6; index++) {
+                const fundMeConnectedContract = await fundMe.connect(
+                    accounts[index]
+                )
+                await fundMeConnectedContract.fund({ value: sendValue })
+            }
+            const startingFundMeBalance = await fundMe.provider.getBalance(
+                fundMe.address
+            )
+            const startingDeployerBalance = await fundMe.provider.getBalance(
+                deployer
+            )
+            const transactionResponse = await fundMe.withdraw()
+            const transactionReceipt = await transactionResponse.wait(1)
+            const { gasUsed, effectiveGasPrice } = transactionReceipt
+            const gasCost = gasUsed.mul(effectiveGasPrice)
+            const endingFundMeBalance = await fundMe.provider.getBalance(
+                fundMe.address
+            )
+            const endingDeployerBalance = await fundMe.provider.getBalance(
+                deployer
+            )
+            assert.equal(endingFundMeBalance, 0)
+            assert.equal(
+                startingFundMeBalance.add(startingDeployerBalance).toString(),
+                endingDeployerBalance.add(gasCost).toString()
+            )
+
+            // funders reset
+            await expect(fundMe.funders(0)).to.be.reverted
+
+            for (let index = 0; index < 6; index++) {
+                assert.equal(
+                    await fundMe.addressToAmountFunded(accounts[index].address),
+                    0
+                )
+            }
+        })
+
+        it("Only allows the owner to withdraw", async function () {
+            const accounts = await ethers.getSigners()
+            const attacker = accounts[1]
+            const attackerConnectedContract = await fundMe.connect(attacker)
+            await expect(
+                attackerConnectedContract.withdraw()
+            ).to.be.revertedWith("FundMe_NotOwner!")
+        })
     })
 })
