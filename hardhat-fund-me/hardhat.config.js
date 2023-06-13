@@ -33,11 +33,12 @@ module.exports = {
         apiKey: ETHERSCAN_API_KEY,
     },
     gasReporter: {
-        enabled: false, // 开启gas 报告
+        enabled: true, // 开启gas 报告
         outputFile: "gas-report.txt",
         noColors: true,
         currency: "USD",
         coinmarketcap: COINMARKETCAP_API_KEY, //https://pro.coinmarketcap.com/account
+        token: "ETH",
     },
     namedAccounts: {
         deployer: {
