@@ -23,5 +23,13 @@
   "name": "hardhat-fund-me",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "test": "hardhat test",
+    "test:staging": "hardhat test --network sepolia",
+    "lint": "solhint 'contracts/**/*.sol'",
+    "lint:fix": "solhint 'contracts/**/*.sol' --fix",
+    "format": "prettier --write .",
+    "coverage": "hardhat coverage"
+  }
 }
