@@ -17,3 +17,5 @@
 - [rekt.news 黑客攻击事件](https://rekt.news/leaderboard/)
 - [mochajs JavaScript测试框架](https://mochajs.org/)
 - [coinmarketcap 加密货币价格](https://coinmarketcap.com/)
+- [foundry 开发框架](https://book.getfoundry.sh/)
+- [thirdweb 三方网络部署](https://thirdweb.com/)
