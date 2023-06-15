@@ -1,4 +1,5 @@
 - [Web3, Full Stack Solidity, Smart Contract & Blockchain - Beginner to Expert ULTIMATE Course](https://github.com/smartcontractkit/full-blockchain-solidity-course-js)
+- [Blockchain Developer, Smart Contract, & Solidity Course - Powered By AI - Beginner to Expert Course | Foundry Edition 2023](https://github.com/Cyfrin/foundry-full-course-f23)
 - [solidity docs](https://docs.soliditylang.org/), [solidity docs cn](https://learnblockchain.cn/docs/solidity/index.html)
 - [solidity example](https://solidity-by-example.org/)
 - [remix ide](https://remix.ethereum.org/)

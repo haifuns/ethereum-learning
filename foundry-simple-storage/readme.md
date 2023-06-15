@@ -9,8 +9,11 @@ foundryup // 安装foundry工具链
 
 forge --version
 cast --version
-anvil --version
+anvil --version // anvil是内置的本地环境
 chisel --version
 
 forge init // 初始化项目
+
+forge compile // 编译
+anvil // 启动本地环境，单独terminal
 ```
