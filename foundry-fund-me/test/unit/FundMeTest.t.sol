@@ -22,10 +22,11 @@ contract FundMeTest is StdCheats, Test {
     // uint256 public constant SEND_VALUE = 1_000_000_000_000_000_000;
     // uint256 public constant SEND_VALUE = 1000000000000000000;
 
+    // 在每个测试用例运行之前调用setUp
     function setUp() external {
         DeployFundMe deployer = new DeployFundMe();
         (fundMe, helperConfig) = deployer.run();
-        vm.deal(USER, STARTING_USER_BALANCE);
+        vm.deal(USER, STARTING_USER_BALANCE); // stdcheats deal, 用来给账户添加eth
     }
 
     function testPriceFeedSetCorrectly() public {
@@ -41,7 +42,7 @@ contract FundMeTest is StdCheats, Test {
     }
 
     function testFundUpdatesFundedDataStructure() public {
-        vm.startPrank(USER);
+        vm.startPrank(USER); // 下一行使用USER这个账户
         fundMe.fund{value: SEND_VALUE}();
         vm.stopPrank();
 
@@ -104,8 +105,7 @@ contract FundMeTest is StdCheats, Test {
             i < numberOfFunders + startingFunderIndex;
             i++
         ) {
-            // we get hoax from stdcheats
-            // prank + deal
+            // stdcheats hoax = prank + deal, prank用来指定账户, deal用来给账户添加eth
             hoax(address(i), SEND_VALUE);
             fundMe.fund{value: SEND_VALUE}();
         }
@@ -115,6 +115,37 @@ contract FundMeTest is StdCheats, Test {
 
         vm.startPrank(fundMe.getOwner());
         fundMe.withdraw();
+        vm.stopPrank();
+
+        assert(address(fundMe).balance == 0);
+        assert(
+            startingFundMeBalance + startingOwnerBalance ==
+                fundMe.getOwner().balance
+        );
+        assert(
+            (numberOfFunders + 1) * SEND_VALUE ==
+                fundMe.getOwner().balance - startingOwnerBalance
+        );
+    }
+
+    function testCheaperWithDrawFromMultipleFunders() public funded {
+        uint160 numberOfFunders = 10;
+        uint160 startingFunderIndex = 2;
+        for (
+            uint160 i = startingFunderIndex;
+            i < numberOfFunders + startingFunderIndex;
+            i++
+        ) {
+            // stdcheats hoax = prank + deal, prank用来指定账户, deal用来给账户添加eth
+            hoax(address(i), SEND_VALUE);
+            fundMe.fund{value: SEND_VALUE}();
+        }
+
+        uint256 startingFundMeBalance = address(fundMe).balance;
+        uint256 startingOwnerBalance = fundMe.getOwner().balance;
+
+        vm.startPrank(fundMe.getOwner());
+        fundMe.cheaperWithdraw();
         vm.stopPrank();
 
         assert(address(fundMe).balance == 0);
