@@ -128,7 +128,7 @@ contract FundMeTest is StdCheats, Test {
         );
     }
 
-    function testCheaperWithDrawFromMultipleFunders() public funded {
+    function testWithDrawFromMultipleFundersCheaper() public funded {
         uint160 numberOfFunders = 10;
         uint160 startingFunderIndex = 2;
         for (

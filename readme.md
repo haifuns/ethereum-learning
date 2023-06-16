@@ -20,3 +20,4 @@
 - [foundry 开发框架](https://book.getfoundry.sh/), [foundry docs cn](https://learnblockchain.cn/docs/foundry/i18n/zh/)
 - [thirdweb 三方网络部署](https://thirdweb.com/)
 - [chainlist 区块链网络](https://chainlist.org/)
+- [evm.codes 以太坊虚拟机操作码参考](https://www.evm.codes/)
