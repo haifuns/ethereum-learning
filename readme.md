@@ -19,3 +19,4 @@
 - [coinmarketcap 加密货币价格](https://coinmarketcap.com/)
 - [foundry 开发框架](https://book.getfoundry.sh/)
 - [thirdweb 三方网络部署](https://thirdweb.com/)
+- [chainlist 区块链网络](https://chainlist.org/)
