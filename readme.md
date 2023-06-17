@@ -5,6 +5,7 @@
 - [remix ide](https://remix.ethereum.org/)
 - [chain link](https://chain.link/)
 - [metamask](https://metamask.io/)
+- [faucets 获取测试网ETH/LINK](https://faucets.chain.link/)
 - [Ethereum Unit Converter](https://eth-converter.com/)
 - [solcjs Solidity编译器](https://github.com/ethereum/solc-js)
 - [hardhat 以太坊开发环境](https://hardhat.org/)
