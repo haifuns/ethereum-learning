@@ -57,7 +57,7 @@ contract HelperConfig is Script {
     {
         // https://docs.chain.link/vrf/v2/subscription/supported-networks#sepolia-testnet
         sepoliaNetworkConfig = NetworkConfig({
-            subscriptionId: 0, // If left as 0, our scripts will create one!
+            subscriptionId: 2943, // If left as 0, our scripts will create one!
             gasLane: 0x474e34a077df58807dbe9c96d3c009b23b3c6d0cce433e59bbf5b34f823bc56c,
             automationUpdateInterval: 30, // 30 seconds
             raffleEntranceFee: 0.01 ether,

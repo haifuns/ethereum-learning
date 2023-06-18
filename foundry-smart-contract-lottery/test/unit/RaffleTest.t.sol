@@ -211,7 +211,7 @@ contract RaffleTest is StdCheats, Test {
     }
 
     modifier skipFork() {
-        if (block.number != 31337) {
+        if (block.chainid != 31337) {
             return;
         }
         _;
@@ -279,7 +279,7 @@ contract RaffleTest is StdCheats, Test {
         Raffle.RaffleState raffleState = raffle.getRaffleState();
         uint256 winnerBalance = recentWinner.balance;
         uint256 endingTimeStamp = raffle.getLastTimeStamp();
-        uint256 prize = raffleEntranceFee * (additionalEntrances + 1);
+        uint256 prize = raffleEntranceFee * (additionalEntrances + 1); // raffleEntered
 
         assert(recentWinner == expectedWinner);
         assert(uint256(raffleState) == 0);

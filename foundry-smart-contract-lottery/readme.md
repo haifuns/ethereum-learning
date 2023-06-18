@@ -3,4 +3,11 @@
 
 ```sh
 forge coverage --report debug > coverage.txt # 输出没有被测试覆盖的行
+
+forge test --match-test testFulfillRandomWordsPicksAWinnerResetsAndSendsMoney
+
+source .env
+forge test --fork-url $SEPOLIA_RPC_URL
+
+make deploy ARGS="--network sepolia"
 ```
