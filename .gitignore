@@ -19,3 +19,5 @@
 **/broadcast/**/
 **/docs/
 **/.gas-snapshot
+
+**/coverage.txt
