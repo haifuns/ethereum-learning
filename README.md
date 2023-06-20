@@ -27,5 +27,5 @@
     - [ERC-20 TOKEN STANDARD](https://ethereum.org/zh/developers/docs/standards/tokens/erc-20/)
     - [ERC-721 NFTs](https://ethereum.org/zh/developers/docs/standards/tokens/erc-721/)
 - [openzeppelin 安全区块链应用的标准](https://www.openzeppelin.com/)
-- [opensea NFT交易平台](https://www.openzeppelin.com/)
-- [IPFS 分布式去中心化数据存储，类区块链](https://ethereum.org/zh/developers/docs/standards/tokens/erc-721/)
+- [opensea NFT交易平台](http://opensea.io/)
+- [IPFS 分布式去中心化数据存储，类区块链](https://ipfs.tech/)
