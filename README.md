@@ -33,3 +33,4 @@
 - [arweave.org 去中心化存储](https://arweave.org/)
 - [filecoin.io 去中心化存储](https://filecoin.io/)
 - [nft.storage IPFS和Filecoin上的去中心化存储](https://nft.storage/)
+- [joinfire 资产安全-交易前检查交易细节](https://www.joinfire.xyz/)

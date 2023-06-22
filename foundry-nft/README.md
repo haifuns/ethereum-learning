@@ -4,6 +4,7 @@
 - [arweave.org 去中心化存储](https://arweave.org/)
 - [filecoin.io 去中心化存储](https://filecoin.io/)
 - [nft.storage IPFS和Filecoin上的去中心化存储](https://nft.storage/)
+- [joinfire 资产安全-交易前检查交易细节](https://www.joinfire.xyz/)
 
 
 存储方式：SVG ipfs https
@@ -25,3 +26,7 @@ make deployMood ARGS="--network sepolia" # 部署mood nft到测试网络
 make mintMoodNft ARGS="--network sepolia" # 铸造mood nft
 make flipMoodNft ARGS="--network sepolia" # 转换mood nft
 ```
+
+如果铸造失败很有可能是因为需要安装jq（foundry-devops依赖）：
+- https://github.com/Cyfrin/foundry-full-course-f23/discussions/58
+- https://jqlang.github.io/jq/
