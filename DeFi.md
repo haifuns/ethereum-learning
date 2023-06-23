@@ -20,6 +20,7 @@ stablecoin 稳定币是一种购买力保持相对稳定的加密资产。
 - Frax：挂钩、算法、内生+外源（+）抵押
 - Rye：浮动、算法、外源抵押
 
+DeFi相关网站：
 - [DeFiLlama Defi数据平台](https://defillama.com/)
 - [AAVE Defi借贷协议](https://aave.com/)
 - [Uniswap Defi代币交换协议](https://app.uniswap.org/)
