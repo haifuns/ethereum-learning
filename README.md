@@ -34,3 +34,8 @@
 - [filecoin.io 去中心化存储](https://filecoin.io/)
 - [nft.storage IPFS和Filecoin上的去中心化存储](https://nft.storage/)
 - [joinfire 资产安全-交易前检查交易细节](https://www.joinfire.xyz/)
+- [DeFiLlama Defi数据平台](https://defillama.com/)
+- [AAVE Defi借贷协议](https://aave.com/)
+- [Uniswap Defi代币交换协议](https://app.uniswap.org/)
+- [Curve Finance Defi代币交换协议](https://curve.fi/)
+- [flashbots 最大可提取价值(MEV)社区 ](https://www.flashbots.net/)
