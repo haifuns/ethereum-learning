@@ -28,3 +28,13 @@ DeFi相关网站：
 - [Curve Finance Defi代币交换协议](https://curve.fi/)
 - [flashbots 最大可提取价值(MEV)社区 ](https://www.flashbots.net/)
 - [smartcontractkit/defi-minimal/stablecoins 最小Defi稳定币示例](https://github.com/smartcontractkit/defi-minimal/tree/main/contracts/stablecoins)
+
+去中心化稳定币项目目标：
+1. 相对稳定性：锚定或挂钩美元，稳定币永远价值$1.00
+    1. Chainlink price feed
+    2. 支持交换 ETH & BTC -> $$$
+2. 稳定方法：算法
+    1. 只能使用足够的抵押品来铸造稳定币
+3. 抵押类型：外源抵押
+    1. wETH（erc20 版本ETH）
+    2. wBTC（erc20 版本BTC）
