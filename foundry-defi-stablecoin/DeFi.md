@@ -21,8 +21,10 @@ stablecoin 稳定币是一种购买力保持相对稳定的加密资产。
 - Rye：浮动、算法、外源抵押
 
 DeFi相关网站：
+- [What Is DeFi?](https://chain.link/education/defi)
 - [DeFiLlama Defi数据平台](https://defillama.com/)
 - [AAVE Defi借贷协议](https://aave.com/)
 - [Uniswap Defi代币交换协议](https://app.uniswap.org/)
 - [Curve Finance Defi代币交换协议](https://curve.fi/)
 - [flashbots 最大可提取价值(MEV)社区 ](https://www.flashbots.net/)
+- [smartcontractkit/defi-minimal/stablecoins 最小Defi稳定币示例](https://github.com/smartcontractkit/defi-minimal/tree/main/contracts/stablecoins)

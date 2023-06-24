@@ -26,7 +26,7 @@
 - ERC - Ethereum Request for Comments 以太坊意见征求稿
     - [ERC-20 TOKEN STANDARD](https://ethereum.org/zh/developers/docs/standards/tokens/erc-20/)
     - [ERC-721 NFTs](https://ethereum.org/zh/developers/docs/standards/tokens/erc-721/)
-- [openzeppelin 安全区块链应用的标准](https://www.openzeppelin.com/)
+- [openzeppelin 安全区块链应用标准](https://www.openzeppelin.com/)
 - [opensea NFT交易平台](http://opensea.io/)
 - [IPFS 分布式去中心化数据存储，类区块链](https://ipfs.tech/)
 - [pinata.cloud IPFS上的去中心化存储](https://www.pinata.cloud/)
@@ -38,4 +38,5 @@
 - [AAVE Defi借贷协议](https://aave.com/)
 - [Uniswap Defi代币交换协议](https://app.uniswap.org/)
 - [Curve Finance Defi代币交换协议](https://curve.fi/)
-- [flashbots 最大可提取价值(MEV)社区 ](https://www.flashbots.net/)
+- [flashbots 最大可提取价值(MEV)社区](https://www.flashbots.net/)
+- [smartcontractkit/defi-minimal/stablecoins 最小Defi稳定币示例](https://github.com/smartcontractkit/defi-minimal/tree/main/contracts/stablecoins)
