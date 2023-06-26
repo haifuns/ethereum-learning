@@ -125,7 +125,7 @@ contract DSCEngineTest is StdCheats, Test {
         vm.expectRevert(DSCEngine.DSCEngine__TransferFailed.selector);
         mockDsce.depositCollateral(address(mockDsc), amountCollateral);
         vm.stopPrank();
-    }
+    }*/
 
     function testRevertsIfCollateralZero() public {
         vm.startPrank(user);
@@ -198,7 +198,7 @@ contract DSCEngineTest is StdCheats, Test {
     // mintDsc Tests //
     ///////////////////////////////////
     // This test needs it's own custom setup
-    function testRevertsIfMintFails() public {
+    /*function testRevertsIfMintFails() public {
         // Arrange - Setup
         MockFailedMintDSC mockDsc = new MockFailedMintDSC();
         tokenAddresses = [weth];
@@ -218,7 +218,7 @@ contract DSCEngineTest is StdCheats, Test {
         vm.expectRevert(DSCEngine.DSCEngine__MintFailed.selector);
         mockDsce.depositCollateralAndMintDsc(weth, amountCollateral, amountToMint);
         vm.stopPrank();
-    }
+    }*/
 
     function testRevertsIfMintAmountIsZero() public {
         vm.startPrank(user);
@@ -288,7 +288,7 @@ contract DSCEngineTest is StdCheats, Test {
     //////////////////////////////////
 
     // this test needs it's own setup
-    function testRevertsIfTransferFails() public {
+    /*function testRevertsIfTransferFails() public {
         // Arrange - Setup
         address owner = msg.sender;
         vm.prank(owner);

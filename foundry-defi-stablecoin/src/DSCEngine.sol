@@ -199,6 +199,7 @@ contract DSCEngine is ReentrancyGuard {
     }
 
     /*
+     * 销毁 DSC 但保留抵押品
      * @notice careful! You'll burn your DSC here! Make sure you want to do this...
      * @dev you might want to use this if you're nervous you might get liquidated and want to just burn
      * you DSC but keep your collateral in.
