@@ -157,7 +157,7 @@ contract DSCEngine is ReentrancyGuard {
     }
 
     /*
-     * 赎回抵押品
+     * 销毁 DSC 并赎回抵押品
      * @param tokenCollateralAddress: The ERC20 token address of the collateral you're depositing
      * @param amountCollateral: The amount of collateral you're depositing
      * @param amountDscToBurn: The amount of DSC you want to burn
@@ -210,28 +210,34 @@ contract DSCEngine is ReentrancyGuard {
     }
 
     /*
+     * 资产清算, 清算有奖励
      * @param collateral: The ERC20 token address of the collateral you're using to make the protocol solvent again.
      * This is collateral that you're going to take from the user who is insolvent.
      * In return, you have to burn your DSC to pay off their debt, but you don't pay off your own.
      * @param user: The user who is insolvent. They have to have a _healthFactor below MIN_HEALTH_FACTOR
      * @param debtToCover: The amount of DSC you want to burn to cover the user's debt.
      *
-     * @notice: You can partially liquidate a user.
-     * @notice: You will get a 10% LIQUIDATION_BONUS for taking the users funds.
-     * @notice: This function working assumes that the protocol will be roughly 150% overcollateralized in order for this to work.
+     * @notice: You can partially liquidate a user. 可以部分清算用户
+     * @notice: You will get a 10% LIQUIDATION_BONUS for taking the users funds. 清算后得到10%的奖励
+     * @notice: This function working assumes that the protocol will be roughly 150% overcollateralized in order for this to work. 
+     * 此功能的工作假设协议将有大约 150% 的超额抵押才能使其工作。
+     * 
      * @notice: A known bug would be if the protocol was only 100% collateralized, we wouldn't be able to liquidate anyone.
      * For example, if the price of the collateral plummeted before anyone could be liquidated.
+     * 一个已知的错误是，如果协议只有 100% 抵押，我们将无法清算任何人。例如，如果在任何人被清算之前抵押品价格暴跌。
      */
     function liquidate(
-        address collateral,
-        address user,
-        uint256 debtToCover
+        address collateral, // 抵押品 ERC20 地址
+        address user, // 想要清算的用户
+        uint256 debtToCover // 要偿还用户债务的 DSC 数量
     ) external moreThanZero(debtToCover) nonReentrant {
+        // 检查被清算的用户健康度是否异常
         uint256 startingUserHealthFactor = _healthFactor(user);
         if (startingUserHealthFactor >= MIN_HEALTH_FACTOR) {
             revert DSCEngine__HealthFactorOk();
         }
         // If covering 100 DSC, we need to $100 of collateral
+        // 100 DSC 等价 $100, 获取等价抵押品数量
         uint256 tokenAmountFromDebtCovered = getTokenAmountFromUsd(
             collateral,
             debtToCover
@@ -240,16 +246,19 @@ contract DSCEngine is ReentrancyGuard {
         // So we are giving the liquidator $110 of WETH for 100 DSC
         // We should implement a feature to liquidate in the event the protocol is insolvent
         // And sweep extra amounts into a treasury
+        // 向清算人提供10%的奖励，使用 $110 价值的 WETH 换取清算人 100 DSC
         uint256 bonusCollateral = (tokenAmountFromDebtCovered *
             LIQUIDATION_BONUS) / 100;
         // Burn DSC equal to debtToCover
         // Figure out how much collateral to recover based on how much burnt
+        // 赎回 110% 抵押品, 给清算人
         _redeemCollateral(
             collateral,
             tokenAmountFromDebtCovered + bonusCollateral,
             user,
             msg.sender
         );
+        // 销毁清算人 DSC
         _burnDsc(debtToCover, user, msg.sender);
 
         uint256 endingUserHealthFactor = _healthFactor(user);
@@ -257,6 +266,8 @@ contract DSCEngine is ReentrancyGuard {
         if (endingUserHealthFactor <= startingUserHealthFactor) {
             revert DSCEngine__HealthFactorNotImproved();
         }
+
+        // 检查清算人健康度
         revertIfHealthFactorIsBroken(msg.sender);
     }
 
