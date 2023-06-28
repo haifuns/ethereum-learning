@@ -130,13 +130,14 @@ contract StopOnRevertHandler is Test {
     /////////////////////////////
     // Aggregator //
     /////////////////////////////
-    function updateCollateralPrice(uint96 newPrice, uint256 collateralSeed) public {
-        int256 intNewPrice = int256(uint256(newPrice));
-        ERC20Mock collateral = _getCollateralFromSeed(collateralSeed);
-        MockV3Aggregator priceFeed = MockV3Aggregator(dscEngine.getCollateralTokenPriceFeed(address(collateral)));
+    // 抵押品价格暴跌会影响DSC稳定性
+    // function updateCollateralPrice(uint96 newPrice, uint256 collateralSeed) public {
+    //     int256 intNewPrice = int256(uint256(newPrice));
+    //     ERC20Mock collateral = _getCollateralFromSeed(collateralSeed);
+    //     MockV3Aggregator priceFeed = MockV3Aggregator(dscEngine.getCollateralTokenPriceFeed(address(collateral)));
 
-        priceFeed.updateAnswer(intNewPrice);
-    }
+    //     priceFeed.updateAnswer(intNewPrice);
+    // }
 
     /// Helper Functions
     function _getCollateralFromSeed(uint256 collateralSeed) private view returns (ERC20Mock) {

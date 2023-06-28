@@ -40,3 +40,4 @@
 - [Curve Finance Defi代币交换协议](https://curve.fi/)
 - [flashbots 最大可提取价值(MEV)社区](https://www.flashbots.net/)
 - [smartcontractkit/defi-minimal/stablecoins 最小Defi稳定币示例](https://github.com/smartcontractkit/defi-minimal/tree/main/contracts/stablecoins)
+- [审计清单](https://github.com/nascentxyz/simple-security-toolkit/blob/main/audit-readiness-checklist.md)
