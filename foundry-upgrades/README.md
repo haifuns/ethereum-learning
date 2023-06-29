@@ -1,0 +1,3 @@
+- [delegatecall 委托调用](https://solidity-by-example.org/delegatecall/)
+- [ERC-1967 Proxy Storage Slots](https://eips.ethereum.org/EIPS/eip-1967)
+- [UUPS Proxies](https://docs.openzeppelin.com/contracts/4.x/api/proxy#transparent-vs-uups)
