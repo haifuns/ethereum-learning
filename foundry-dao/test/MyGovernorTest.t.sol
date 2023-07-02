@@ -33,16 +33,16 @@ contract MyGovernorTest is Test {
         token.mint(VOTER, 100e18);
 
         vm.prank(VOTER);
-        token.delegate(VOTER);
+        token.delegate(VOTER); // 把投票权委托给自己
         timelock = new TimeLock(MIN_DELAY, proposers, executors);
         governor = new MyGovernor(token, timelock);
         bytes32 proposerRole = timelock.PROPOSER_ROLE();
         bytes32 executorRole = timelock.EXECUTOR_ROLE();
         bytes32 adminRole = timelock.TIMELOCK_ADMIN_ROLE();
 
-        timelock.grantRole(proposerRole, address(governor));
-        timelock.grantRole(executorRole, address(0));
-        timelock.revokeRole(adminRole, msg.sender);
+        timelock.grantRole(proposerRole, address(governor)); // 只有governor有提案权限
+        timelock.grantRole(executorRole, address(0)); // 任何人都可以执行已经通过的提案
+        timelock.revokeRole(adminRole, msg.sender); // 撤销admin权限
 
         box = new Box();
         box.transferOwnership(address(timelock));
@@ -51,7 +51,7 @@ contract MyGovernorTest is Test {
     function testCantUpdateBoxWithoutGovernance() public {
         vm.expectRevert();
         box.store(1);
-    }
+    } 
 
     function testGovernanceUpdatesBox() public {
         uint256 valueToStore = 777;
