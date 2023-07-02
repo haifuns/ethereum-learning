@@ -48,3 +48,4 @@
 - [Aragon DAO构建平台](https://aragon.org/)
 - [readiness-checklist 安全审计清单](https://github.com/nascentxyz/simple-security-toolkit)
 - [solcurity 智能合约安全和代码质量标准](https://github.com/transmissions11/solcurity)
+- [web3education](https://web3education.dev/)
